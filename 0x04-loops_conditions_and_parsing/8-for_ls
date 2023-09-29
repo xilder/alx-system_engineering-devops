@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# prints the liats of files in a dir but removes
+# everything from the first dash to the beginning
+
+list=$(ls)
+
+for i in $list
+do
+	echo "$i" | cut -d "-" -f2
+done

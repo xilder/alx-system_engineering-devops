@@ -1,3 +1,5 @@
+include 'stdlib'
+
 file_line { 'change identity_file':
   ensure => present,
   path   => '/etc/ssh/ssh_config',

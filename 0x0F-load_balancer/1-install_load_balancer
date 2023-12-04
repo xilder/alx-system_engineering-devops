@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# install haproxy
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+# setup the load balancer
+LB_CONFIG=\
+"frontend xilder_frontend
+	bind *:80
+	mode http
+	default_backend xilder_backend
+backend xilder_backend
+	balance roundrobin
+	server 150603-web-01 100.25.139.50 check
+	server 150603-web-02 54.172.110.198 check"
+
+sudo echo "$LB_CONFIG" > /etc/haproxy/haproxy.cfg
+
+sudo echo "ENABLED=1" > /etc/default/haproxy
+
+sudo service haproxy restart

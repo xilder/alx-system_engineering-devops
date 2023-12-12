@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#install haproxy on a server
+# Enable a dedicated PPA
+sudo apt update
+sudo apt install haproxy -y
+# Install Haproxy
+sudo apt-get -y install haproxy=2.8.\*
+# Getting access privileges to config
+sudo chown -R "$USER":"$USER" /etc/default/haproxy
+sudo chown -R "$USER":"$USER" /etc/haproxy/
+echo "global
+        log 127.0.0.1 local0 notice
+        maxconn 2000
+        user haproxy
+        group haproxy
+ defaults
+        log   global
+        mode  http
+        option  httplog
+        option  dontlognull
+        retries 3
+        option redispatch
+        timeout connect  5000
+        timeout client  10000
+        timeout server  10000
+ frontend www-https
+        bind   0.0.0.0:80
+        option forwardfor
+        default_backend www-backend
+ backend www-backend
+        balance  roundrobin
+        server s1 100.25.139.50:80 check
+        server s2 54.172.110.198:80 check
+" > /etc/haproxy/haproxy.cfg
+# Restart Haproxy
+sudo service haproxy restart

@@ -35,17 +35,10 @@ defaults
 
 frontend xilder-frontend
         bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.xilder.tech.pem
         mode http
-        http-request redirect scheme https code 301 unless { ssl_fc }
-        http-request set-header X_Forwarded-Proto http
         default_backend xilder-backend
-
-frontend xilder-https
-        bind *:443 ssl crt /etc/haproxy/certs/xilder.tech.pem
-        http-request set-header X-Forwarded-Proto https
-        default_backend xilder-backend
-
 backend xilder-backend
-        balance roundrobin
-	server 150603-web-01 100.25.139.50:80 check
+        balance  roundrobin
+        server 150603-web-01 100.25.139.50:80 check
         server 150603-web-02 54.172.110.198:80 check

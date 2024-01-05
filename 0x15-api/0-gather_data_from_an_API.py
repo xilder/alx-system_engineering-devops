@@ -5,6 +5,7 @@ for a given employee ID, returns information about his/her TODO list progress
 from sys import argv
 import requests
 
+
 def get_todo_list():
     base_url = "https://jsonplaceholder.typicode.com"
     user_endpoint = f"users/{argv[1]}"
@@ -15,8 +16,8 @@ def get_todo_list():
     user = requests.get(user_url).json()
     todos = requests.get(user_todo_url).json()
     done = [x for x in todos if x["completed"] is True]
-    print(f"Employee {user['name']} is done with " + 
-           f"tasks({len(done)}/{len(todos)})")
+    print(f"Employee {user['name']} is done with " +
+          f"tasks({len(done)}/{len(todos)})")
     for todo in done:
         print(f"\t {todo['title']}")
 

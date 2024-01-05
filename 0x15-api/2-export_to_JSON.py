@@ -26,8 +26,7 @@ def get_todo_list():
         tasks.append(task)
 
     with open(f"{user_id}.json", "w") as f:
-        for todo in todos:
-            f.write(json.dumps({f"{user_id}": tasks}))
+        f.write(json.dumps({f"{user_id}": tasks}))
 
 
 if __name__ == "__main__":

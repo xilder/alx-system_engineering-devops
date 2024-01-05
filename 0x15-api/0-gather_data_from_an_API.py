@@ -17,7 +17,7 @@ def get_todo_list():
     todos = requests.get(user_todo_url).json()
     done = [x for x in todos if x["completed"] is True]
     print(f"Employee {user['name']} is done with " +
-          f"tasks({len(done)}/{len(todos)})")
+            f"tasks({len(done)}/{len(todos)}):")
     for todo in done:
         print(f"\t {todo['title']}")
 

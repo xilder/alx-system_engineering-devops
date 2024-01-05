@@ -7,6 +7,9 @@ from sys import argv
 
 
 def get_todo_list():
+    """
+    prints some api data
+    """
     base_url = "https://jsonplaceholder.typicode.com"
     user_endpoint = f"users/{argv[1]}"
     todo_endpoint = f"todos"

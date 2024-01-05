@@ -17,7 +17,7 @@ def get_todo_list():
     
     with open(f"{user_id}.csv", "w") as f:
         for todo in todos:
-            f.write(f'"{user_id}", "{user["username"]}",' +
+            f.write(f'"{user_id}","{user["username"]}",' +
                     f'"{todo["completed"]}","{todo["title"]}"\n')
 
 if __name__ == "__main__":

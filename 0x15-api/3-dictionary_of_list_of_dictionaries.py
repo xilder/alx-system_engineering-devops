@@ -24,7 +24,7 @@ def get_todo_list():
         all_info[user['id']] = tasks
 
     with open(f"todo_all_employees.json", "w") as f:
-       f.write(json.dumps(all_info))
+        f.write(json.dumps(all_info))
 
 
 if __name__ == "__main__":

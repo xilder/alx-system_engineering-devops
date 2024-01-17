@@ -12,7 +12,7 @@ def top_ten(subreddit):
     if subreddit is None or not isinstance(subreddit, str):
         print("None")
     user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
-    params = {"limit" : 10}
+    params = {"limit": 10}
     url = f'https://www.reddit.com/r/{subreddit}/hot/.json'
     response = get(url, headers=user_agent, params=params)
     results = response.json()

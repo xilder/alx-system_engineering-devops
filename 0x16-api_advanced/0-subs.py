@@ -4,6 +4,7 @@ gets the total number of subscribers
 """
 from requests import get
 
+
 def number_of_subscribers(subreddit):
     """
     gets the total number of subscribers

@@ -11,12 +11,11 @@ def number_of_subscribers(subreddit):
     """
     if subreddit is None or not isinstance(subreddit, str):
         return 0
-    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    response = requests.get(url, headers=user_agent)
-    results = response.json()
-
-    try:
-        return results.get('data').get('subscribers')
-    except Exception:
+    user_agent = {"User-Agent": "My-User-Agent"}
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    response = requests.get(url, headers=user_agent, allow_redirects=False)
+    if response.status_code >= 300:
         return 0
+    else:
+        data = response.json()
+        return data["data"]["subscribers"]
